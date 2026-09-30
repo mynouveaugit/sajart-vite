@@ -1,0 +1,427 @@
+/* =========================================================
+   ABOUT — devanture animée + mise en page
+   ========================================================= */
+
+#apropos {
+  position: relative;
+  margin-top: 0;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+/* --- Layout principal : visuel + texte --- */
+.about-inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: .85fr 1.15fr;
+  gap: 3rem;
+  align-items: center;
+  padding: 2.5rem;
+  background: rgba(240, 180, 100, 0.08);
+  border: 1px solid rgba(200, 150, 80, 0.18);
+  border-radius: var(--radius);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) .about-inner {
+    background: rgba(240, 160, 80, 0.12);
+    border-color: rgba(180, 120, 50, 0.25);
+  }
+}
+[data-theme="light"] .about-inner {
+  background: rgba(240, 160, 80, 0.12);
+  border-color: rgba(180, 120, 50, 0.25);
+}
+
+.about-visual svg { width: 100%; max-width: 220px; }
+
+/* --- Badge "depuis 2021" --- */
+.about-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.25rem;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  background: rgba(240, 106, 53, 0.1);
+  border: 1px solid rgba(240, 106, 53, 0.3);
+  width: fit-content;
+}
+.badge-icon { width: 16px; height: 16px; flex-shrink: 0; }
+.about-badge span {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--orange);
+  letter-spacing: 0.3px;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) .about-badge span { color: #b84e1a; }
+}
+[data-theme="light"] .about-badge span { color: #b84e1a; }
+
+/* --- Section fondateur --- */
+.founder-inner {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 2rem;
+  align-items: center;
+  margin-top: 1.5rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 2rem;
+  border-radius: 20px;
+  max-width: var(--container);
+  background: rgba(240, 180, 100, 0.08);
+  border: 1px solid rgba(200, 150, 80, 0.18);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) .founder-inner {
+    background: rgba(240, 160, 80, 0.12);
+    border-color: rgba(180, 120, 50, 0.25);
+  }
+}
+[data-theme="light"] .founder-inner {
+  background: rgba(240, 160, 80, 0.12);
+  border-color: rgba(180, 120, 50, 0.25);
+}
+
+/* =========================================================
+   PHOTO FONDATEUR — wrapper avec cercles décoratifs orbitaux
+   ========================================================= */
+
+/* Wrapper : contient le SVG en fond + la photo par-dessus.
+   Sur mobile, une marge est ajoutée (voir @media plus bas) pour
+   laisser la place aux anneaux qui débordent — sinon ils se font
+   couper par le bord de l'écran. */
+.founder-photo-wrap {
+  position: relative;
+  width: 200px;
+  flex-shrink: 0;
+}
+
+/* SVG décoratif — déborde légèrement pour entourer la photo.
+   ⚠️ max-width:none est OBLIGATOIRE ici : la règle globale
+   "img, svg { max-width:100% }" écraserait sinon le width:144%
+   voulu et couperait les anneaux. */
+.founder-deco-svg {
+  position: absolute;
+  inset: -22%;
+  width: 144%;
+  height: 144%;
+  max-width: none;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Photo au-dessus du SVG */
+.founder-photo {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 16px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #115886, #0d2438);
+}
+.founder-photo img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+}
+.founder-photo-frame {
+  position: absolute; inset: 0;
+  border: 2px solid var(--blue-light);
+  border-radius: 16px;
+  pointer-events: none;
+}
+
+/* ── Couleurs anneaux — MODE NUIT (défaut) ── */
+.fdeco-ring-1 { stroke: rgba(17,  88,  134, 0.60); }
+.fdeco-ring-2 { stroke: rgba(240, 106, 53,  0.48); }
+.fdeco-ring-3 { stroke: rgba(79,  163, 216, 0.35); }
+.fdeco-halo   { fill:   rgba(17,  88,  134, 0.08); }
+
+.fdeco-dot-orange { fill: rgba(240, 106, 53,  0.88); }
+.fdeco-dot-blue   { fill: rgba(79,  163, 216, 0.75); }
+.fdeco-brush      { stroke: rgba(79, 163, 216, 0.38); }
+
+/* ── Couleurs — MODE JOUR (manuel) ── */
+[data-theme="light"] .fdeco-ring-1 { stroke: rgba(13,  61,  106, 0.45); }
+[data-theme="light"] .fdeco-ring-2 { stroke: rgba(180, 70,  15,  0.38); }
+[data-theme="light"] .fdeco-ring-3 { stroke: rgba(13,  61,  106, 0.26); }
+[data-theme="light"] .fdeco-halo   { fill:   rgba(210, 140, 50,  0.12); }
+
+[data-theme="light"] .fdeco-dot-orange { fill: rgba(180, 70,  15,  0.85); }
+[data-theme="light"] .fdeco-dot-blue   { fill: rgba(13,  61,  106, 0.72); }
+[data-theme="light"] .fdeco-brush      { stroke: rgba(13, 61,  106, 0.40); }
+
+/* ── Couleurs — MODE JOUR (système) ── */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) .fdeco-ring-1 { stroke: rgba(13,  61,  106, 0.45); }
+  :root:not([data-theme="dark"]) .fdeco-ring-2 { stroke: rgba(180, 70,  15,  0.38); }
+  :root:not([data-theme="dark"]) .fdeco-ring-3 { stroke: rgba(13,  61,  106, 0.26); }
+  :root:not([data-theme="dark"]) .fdeco-halo   { fill:   rgba(210, 140, 50,  0.12); }
+
+  :root:not([data-theme="dark"]) .fdeco-dot-orange { fill: rgba(180, 70,  15,  0.85); }
+  :root:not([data-theme="dark"]) .fdeco-dot-blue   { fill: rgba(13,  61,  106, 0.72); }
+  :root:not([data-theme="dark"]) .fdeco-brush      { stroke: rgba(13, 61,  106, 0.40); }
+}
+
+.founder-eyebrow {
+  display: block;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--blue-light);
+  margin-bottom: 0.5rem;
+}
+.founder-text h3 {
+  font-size: 1.4rem;
+  margin-bottom: 0.75rem;
+  color: var(--ink-050);
+}
+.founder-text p {
+  color: var(--ink-200);
+  line-height: 1.6;
+  margin-bottom: 0.75rem;
+  hyphens: auto;
+}
+
+/* =========================================================
+   ANIMATIONS DEVANTURE
+   ========================================================= */
+:root { --shop-cycle: 10s; }
+
+.shop-roof-l {
+  fill: none; stroke-dasharray: 233;
+  animation: shopDraw var(--shop-cycle) ease-out infinite;
+  animation-delay: 0.1s;
+}
+.shop-roof-r {
+  fill: none; stroke-dasharray: 233;
+  animation: shopDraw var(--shop-cycle) ease-out infinite;
+  animation-delay: 0.25s;
+}
+.shop-roof-trim {
+  fill: none; stroke-dasharray: 247;
+  animation: shopDraw var(--shop-cycle) ease-out infinite;
+  animation-delay: 0.55s;
+}
+.shop-facade {
+  fill: none; stroke-dasharray: 482;
+  animation: shopDraw var(--shop-cycle) ease-out infinite;
+  animation-delay: 1s;
+}
+.shop-sign-bg {
+  opacity: 0; transform-origin: center;
+  animation: shopPop var(--shop-cycle) cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+  animation-delay: 1.7s;
+}
+.shop-sign-text {
+  opacity: 0;
+  animation: shopFadeIn var(--shop-cycle) ease-out infinite;
+  animation-delay: 2s;
+}
+.shop-window-l {
+  fill: none; stroke-dasharray: 168;
+  animation: shopDraw var(--shop-cycle) ease-out infinite;
+  animation-delay: 2.3s;
+}
+.shop-window-l-cross {
+  fill: none; stroke-dasharray: 85;
+  animation: shopDraw var(--shop-cycle) ease-out infinite;
+  animation-delay: 2.75s;
+}
+.shop-item-calebasse {
+  opacity: 0; transform-origin: center;
+  animation: shopPop var(--shop-cycle) cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+  animation-delay: 3.05s;
+}
+.shop-item-calebasse-motif {
+  fill: none; stroke-dasharray: 26;
+  animation: shopDraw var(--shop-cycle) ease-out infinite;
+  animation-delay: 3.2s;
+}
+.shop-item-cloth {
+  opacity: 0;
+  animation: shopFadeIn var(--shop-cycle) ease-out infinite;
+  animation-delay: 3.35s;
+}
+.shop-window-r {
+  fill: none; stroke-dasharray: 168;
+  animation: shopDraw var(--shop-cycle) ease-out infinite;
+  animation-delay: 2.45s;
+}
+.shop-window-r-cross {
+  fill: none; stroke-dasharray: 85;
+  animation: shopDraw var(--shop-cycle) ease-out infinite;
+  animation-delay: 2.9s;
+}
+.shop-item-frame {
+  fill: none; stroke-dasharray: 58;
+  animation: shopDraw var(--shop-cycle) ease-out infinite;
+  animation-delay: 3.2s;
+}
+.shop-item-frame-motif {
+  fill: none; stroke-dasharray: 42;
+  animation: shopDraw var(--shop-cycle) ease-out infinite;
+  animation-delay: 3.45s;
+}
+.shop-door {
+  fill: none; stroke-dasharray: 150;
+  animation: shopDraw var(--shop-cycle) ease-out infinite;
+  animation-delay: 3.7s;
+}
+.shop-door-handle {
+  opacity: 0; transform-origin: center;
+  animation: shopPop var(--shop-cycle) cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+  animation-delay: 4.1s;
+}
+.shop-diamond-l {
+  opacity: 0; transform-origin: center;
+  animation: shopPop var(--shop-cycle) cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+  animation-delay: 4.25s;
+}
+.shop-diamond-r {
+  opacity: 0; transform-origin: center;
+  animation: shopPop var(--shop-cycle) cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+  animation-delay: 4.35s;
+}
+.shop-flagpole {
+  fill: none; stroke-dasharray: 18;
+  animation: shopDraw var(--shop-cycle) ease-out infinite;
+  animation-delay: 4.5s;
+}
+.shop-flag {
+  opacity: 0;
+  transform-origin: 158px 17px;
+  animation: shopFlagAppear var(--shop-cycle) ease-out infinite,
+             shopFlagWave 2.2s ease-in-out infinite;
+  animation-delay: 4.7s, 5.4s;
+}
+.shop-plant-pot {
+  opacity: 0;
+  animation: shopFadeIn var(--shop-cycle) ease-out infinite;
+  animation-delay: 4.85s;
+}
+.shop-plant-leaf1 {
+  fill: none; stroke-dasharray: 19;
+  transform-origin: 25px 132px;
+  animation: shopDraw var(--shop-cycle) ease-out infinite,
+             shopLeafSway 3s ease-in-out infinite;
+  animation-delay: 5s, 5.8s;
+}
+.shop-plant-leaf2 {
+  fill: none; stroke-dasharray: 18;
+  transform-origin: 25px 132px;
+  animation: shopDraw var(--shop-cycle) ease-out infinite,
+             shopLeafSway 3.4s ease-in-out infinite;
+  animation-delay: 5.1s, 5.9s;
+}
+.shop-plant-leaf3 {
+  fill: none; stroke-dasharray: 16;
+  transform-origin: 25px 132px;
+  animation: shopDraw var(--shop-cycle) ease-out infinite,
+             shopLeafSway 2.7s ease-in-out infinite;
+  animation-delay: 5.2s, 6s;
+}
+
+@keyframes shopDraw {
+  0%   { opacity: 0; stroke-dashoffset: 500; }
+  1%   { opacity: 1; }
+  16%  { stroke-dashoffset: 0; }
+  93%  { opacity: 1; stroke-dashoffset: 0; }
+  97%  { opacity: 0; }
+  100% { opacity: 0; stroke-dashoffset: 500; }
+}
+@keyframes shopFadeIn {
+  0%, 20%  { opacity: 0; }
+  25%      { opacity: 1; }
+  93%      { opacity: 1; }
+  97%      { opacity: 0; }
+  100%     { opacity: 0; }
+}
+@keyframes shopPop {
+  0%, 18%  { opacity: 0; transform: scale(0); }
+  23%      { opacity: 1; transform: scale(1.2); }
+  27%      { transform: scale(1); }
+  93%      { opacity: 1; transform: scale(1); }
+  97%      { opacity: 0; transform: scale(0); }
+  100%     { opacity: 0; transform: scale(0); }
+}
+@keyframes shopFlagAppear {
+  0%, 40%  { opacity: 0; }
+  45%      { opacity: 1; }
+  93%      { opacity: 1; }
+  97%      { opacity: 0; }
+  100%     { opacity: 0; }
+}
+@keyframes shopFlagWave {
+  0%, 100% { transform: rotate(0deg); }
+  50%      { transform: rotate(-6deg); }
+}
+@keyframes shopLeafSway {
+  0%, 100% { transform: rotate(0deg); }
+  50%      { transform: rotate(4deg); }
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .shop-roof-l, .shop-roof-r, .shop-roof-trim, .shop-facade,
+  .shop-window-l, .shop-window-l-cross, .shop-window-r, .shop-window-r-cross,
+  .shop-door, .shop-item-calebasse-motif, .shop-item-frame,
+  .shop-item-frame-motif, .shop-flagpole,
+  .shop-plant-leaf1, .shop-plant-leaf2, .shop-plant-leaf3 {
+    opacity: 1; stroke-dashoffset: 0; animation: none;
+  }
+  .shop-sign-bg, .shop-sign-text, .shop-item-calebasse, .shop-item-cloth,
+  .shop-door-handle, .shop-diamond-l, .shop-diamond-r, .shop-flag,
+  .shop-plant-pot {
+    opacity: 1; transform: scale(1) rotate(0deg); animation: none;
+  }
+  .founder-deco-svg animateTransform,
+  .founder-deco-svg animate { display: none; }
+  .fdeco-brush { stroke-dashoffset: 0; }
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .about-inner {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 1.5rem;
+  }
+  .about-visual { max-width: 220px; margin: 0 auto; }
+}
+@media (max-width: 640px) {
+  .founder-inner {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 1.2rem;
+  }
+  .founder-photo-wrap {
+    width: 100%;
+    max-width: 290px;
+    /* marge verticale + horizontale : laisse la place aux anneaux
+       qui débordent (voir .founder-deco-svg ci-dessous, réduit
+       sur mobile pour tenir dans l'écran sans être coupé) */
+    margin: 8px auto;
+  }
+  .founder-deco-svg {
+    inset: -14%;
+    width: 128%;
+    height: 138%;
+  }
+}
+@media (max-width: 400px) {
+  .about-inner { padding: 1rem; }
+  .founder-photo-wrap { max-width: 200px; }
+}
+
+.about-inner h1, .about-inner h2, .about-inner h3, .about-inner p,
+.founder-inner h3, .founder-inner p {
+  overflow-wrap: break-word;
+  min-width: 0;
+}

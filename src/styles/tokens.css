@@ -1,0 +1,140 @@
+/* =========================================================
+   TOKENS — Palette sombre (défaut) + Palette claire (mode jour)
+   Switching : auto via prefers-color-scheme + manuel via [data-theme]
+   ========================================================= */
+
+/* ── Commun aux deux modes ── */
+:root {
+  /* Couleurs d'accent — invariantes entre les modes */
+  --orange:        #f06a35;
+  --orange-light:  #ff9466;
+  --orange-glow:   rgba(240, 106, 53, 0.28);
+  --blue:          #115886;
+  --blue-light:    #4fa3d8;
+  --blue-glow:     rgba(79, 163, 216, 0.22);
+
+  /* Typographie */
+  --font-display: "Outfit", system-ui, sans-serif;
+  --font-body:    "Outfit", system-ui, sans-serif;
+  --font-mono:    "JetBrains Mono", "Fira Code", monospace;
+
+  /* Géométrie */
+  --radius:     14px;
+  --container:  1120px;
+
+  /* Transition de thème */
+  --theme-transition: 0.35s ease;
+}
+
+/* ══════════════════════════════════════════════════════════
+   MODE SOMBRE — défaut (toujours chargé en premier)
+   ══════════════════════════════════════════════════════════ */
+:root,
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  /* Fonds */
+  --bg-950:  #050c14;
+  --bg-900:  #0a1622;
+  --bg-800:  #112035;
+
+  /* Encre (texte) */
+  --ink-050: #f0f4f8;
+  --ink-200: #c4d0dc;
+  --ink-300: #93a8b8;
+  --ink-400: #627486;
+  --ink-500: #445260;
+
+  /* Verre */
+  --glass-fill:   rgba(255, 255, 255, 0.04);
+  --glass-border: rgba(255, 255, 255, 0.09);
+
+  /* Ombres */
+  --shadow-card:  0 4px 24px -6px rgba(0, 0, 0, 0.55);
+  --shadow-float: 0 12px 40px -10px rgba(0, 0, 0, 0.70);
+
+  --orange-glow: rgba(240, 106, 53, 0.28);
+  --blue-glow:   rgba(79, 163, 216, 0.22);
+}
+
+/* ══════════════════════════════════════════════════════════
+   MODE CLAIR — papier Moleskine moderne, pas beige plein
+   ══════════════════════════════════════════════════════════ */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    color-scheme: light;
+
+    /* Fonds — blanc cassé chaud, quasi neutre */
+    --bg-950:  #faf8f4;
+    --bg-900:  #f0ebe2;
+    --bg-800:  #e5ddd0;
+
+    /* Encre — sombre et lisible */
+    --ink-050: #12090a;
+    --ink-200: #2c1c10;
+    --ink-300: #4a3220;
+    --ink-400: #7a5e44;
+    --ink-500: #a8896e;
+
+    /* Verre — voile blanc translucide */
+    --glass-fill:   rgba(255, 255, 255, 0.72);
+    --glass-border: rgba(180, 140, 90, 0.18);
+
+    /* Ombres douces */
+    --shadow-card:  0 4px 24px -6px rgba(60, 30, 10, 0.10);
+    --shadow-float: 0 12px 40px -10px rgba(60, 30, 10, 0.16);
+
+    --orange-glow: rgba(240, 106, 53, 0.22);
+    --blue-glow:   rgba(17, 88, 134, 0.16);
+  }
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+
+  --bg-950:  #faf8f4;
+  --bg-900:  #f0ebe2;
+  --bg-800:  #e5ddd0;
+
+  --ink-050: #12090a;
+  --ink-200: #2c1c10;
+  --ink-300: #4a3220;
+  --ink-400: #7a5e44;
+  --ink-500: #a8896e;
+
+  --glass-fill:   rgba(255, 255, 255, 0.72);
+  --glass-border: rgba(180, 140, 90, 0.18);
+
+  --shadow-card:  0 4px 24px -6px rgba(60, 30, 10, 0.10);
+  --shadow-float: 0 12px 40px -10px rgba(60, 30, 10, 0.16);
+
+  --orange-glow: rgba(240, 106, 53, 0.22);
+  --blue-glow:   rgba(17, 88, 134, 0.16);
+}
+
+/* ── Transition douce sur tout le doc au changement de thème ── */
+*,
+*::before,
+*::after {
+  transition:
+    background-color var(--theme-transition),
+    border-color     var(--theme-transition),
+    color            var(--theme-transition),
+    box-shadow       var(--theme-transition);
+}
+
+/* Sauf les animations bogolan/signature */
+.bogo-line,
+.bogo-dot,
+.bogo-shape,
+.bogo-calli,
+.sig-letter,
+.sig-dot,
+.sig-pencil,
+.sig-pencil-s,
+.sig-baseline,
+.loader-bar,
+.gallery-img,
+.gallery-skeleton {
+  transition: none;
+}

@@ -1,0 +1,142 @@
+/* ══════════════════════════════════════════
+   SERVICES — grille + carousel multi-images
+══════════════════════════════════════════ */
+
+.service-grid {
+  max-width: var(--container); margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem; margin-top: 2rem;
+}
+
+.service-card {
+  display: flex; flex-direction: column;
+  padding: 0; overflow: hidden; border-radius: 16px;
+  /* PAS d'opacity:0 ici — l'animation s'en charge */
+  animation: serviceFadeUp 0.6s ease-out forwards;
+  transition: transform .28s ease, border-color .28s ease, box-shadow .28s ease;
+}
+.service-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(240, 106, 53, .45);
+  box-shadow: 0 20px 48px -20px var(--orange-glow);
+}
+@keyframes serviceFadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Zone photo ── */
+.service-photo {
+  position: relative;
+  width: 100%; height: 180px;
+  border-radius: 14px 14px 0 0;
+  overflow: hidden; flex-shrink: 0;
+  background: linear-gradient(135deg, #1b3a4b 0%, #0f2233 100%);
+}
+
+/* ── Slides ── */
+.service-slide {
+  position: absolute; inset: 0;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  /* invisible par défaut */
+  opacity: 0;
+  transform: scale(1.05);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  z-index: 0;
+}
+/* slide active = visible */
+.service-slide.is-active {
+  opacity: 1 !important;
+  transform: scale(1) !important;
+}
+/* fallback dégradé si 0 image */
+.service-slide-fallback {
+  background: linear-gradient(135deg, #f06a35 0%, #115886 100%) !important;
+}
+
+/* ── Voile ── */
+.service-photo-veil {
+  position: absolute; inset: 0; z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(17, 88, 134, .10) 0%,
+    rgba(17, 88, 134, .50) 70%,
+    rgba(17, 88, 134, .70) 100%
+  );
+  transition: background .35s ease;
+}
+.service-card:hover .service-photo-veil {
+  background: linear-gradient(
+    180deg,
+    rgba(17, 88, 134, .03) 0%,
+    rgba(17, 88, 134, .28) 70%,
+    rgba(17, 88, 134, .45) 100%
+  );
+}
+
+/* ── Badge icône ── */
+.service-icon-badge {
+  position: absolute; z-index: 2;
+  bottom: -22px; left: 20px;
+  width: 52px; height: 52px; border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 4px 14px rgba(17, 88, 134, .28);
+  display: flex; align-items: center; justify-content: center;
+  padding: 9px;
+}
+.service-icon-badge svg { width: 100%; height: 100%; }
+
+/* ── Points navigation ── */
+.service-dots {
+  position: absolute; z-index: 3;
+  bottom: .7rem; right: .8rem;
+  display: flex; gap: 5px; align-items: center;
+}
+.service-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: rgba(255,255,255,.4);
+  border: none; padding: 0; cursor: pointer;
+  transition: background .25s ease, transform .25s ease, box-shadow .25s ease;
+}
+.service-dot.is-active {
+  background: var(--orange); transform: scale(1.4);
+  box-shadow: 0 0 8px 1px var(--orange-glow);
+}
+
+/* ── Compteur ── */
+.service-counter {
+  position: absolute; z-index: 3;
+  top: .55rem; right: .65rem;
+  font-size: .67rem; letter-spacing: .05em;
+  color: rgba(255,255,255,.8);
+  font-family: var(--font-display);
+  background: rgba(10,22,34,.55);
+  padding: 2px 7px; border-radius: 999px;
+  backdrop-filter: blur(4px);
+}
+
+/* ── Corps texte ── */
+.service-body { padding: 34px 20px 22px; flex: 1; }
+.service-body h3 {
+  font-size: 1.1rem; margin-top: 4px; margin-bottom: .45rem;
+  color: #f4d9a0;
+}
+.service-body p {
+  font-size: .9rem; margin: 0; line-height: 1.55;
+  color: rgba(255,255,255,.75);
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) { .service-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .service-grid { grid-template-columns: 1fr; } }
+
+/* ── Mouvement réduit ── */
+@media (prefers-reduced-motion: reduce) {
+  .service-card { animation: none; opacity: 1; }
+  .service-slide { transition: none; }
+  .service-photo-veil { transition: none; }
+}

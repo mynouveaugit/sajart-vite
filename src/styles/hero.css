@@ -1,0 +1,196 @@
+/* =========================================================
+   HERO — motif bogolan tracé au pinceau, étape par étape
+   Cycle 12s — plus contemplatif, plus artistique
+   ========================================================= */
+
+:root {
+  --bogo-cycle: 12s;
+}
+
+/* --- 1. Cercle extérieur --- */
+.bl-circle {
+  fill: none;
+  stroke-dasharray: 545;
+  animation: bogoDraw var(--bogo-cycle) cubic-bezier(0.16, 1, 0.3, 1) infinite;
+  animation-delay: 0.1s;
+}
+.bl-circle-inner {
+  fill: none;
+  stroke-dasharray: 390;
+  animation: bogoDrawFade var(--bogo-cycle) cubic-bezier(0.16, 1, 0.3, 1) infinite;
+  animation-delay: 0.7s;
+}
+
+/* --- 2. Croix + point central --- */
+.bl-cross {
+  stroke-dasharray: 100 100;
+  animation: bogoStrike var(--bogo-cycle) cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+  animation-delay: 1.4s;
+}
+.bd-center {
+  transform-origin: center;
+  animation: bogoPulse var(--bogo-cycle) ease-in-out infinite;
+  animation-delay: 1.8s;
+}
+
+/* --- 3. Chevrons en couronne --- */
+.bl-chev {
+  fill: none;
+  stroke-dasharray: 45;
+  animation: bogoChevron var(--bogo-cycle) cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+.bl-chev.c1 { animation-delay: 2.1s; }
+.bl-chev.c2 { animation-delay: 2.2s; }
+.bl-chev.c3 { animation-delay: 2.1s; }
+.bl-chev.c4 { animation-delay: 2.2s; }
+
+/* --- 4. Losanges aux coins — tamponnés avec rebond --- */
+.bogo-shape {
+  transform-origin: center;
+  animation: bogoStamp var(--bogo-cycle) cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+}
+.bogo-shape.bs1 { animation-delay: 2.7s; }
+.bogo-shape.bs2 { animation-delay: 2.85s; }
+.bogo-shape.bs3 { animation-delay: 2.85s; }
+.bogo-shape.bs4 { animation-delay: 3.0s; }
+
+/* --- 5. Zigzags bordure textile --- */
+.bl-zigzag, .bl-zigzag2 {
+  fill: none;
+  stroke-dasharray: 160;
+  animation: bogoSlash var(--bogo-cycle) cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+.bl-zigzag  { animation-delay: 3.3s; }
+.bl-zigzag2 { animation-delay: 3.5s; }
+
+/* --- 6. Calligraphie fluide --- */
+.bogo-calli {
+  fill: none;
+  stroke-dasharray: 420;
+  animation: bogoFlow var(--bogo-cycle) cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  animation-delay: 3.8s;
+}
+.bd-calli1, .bd-calli2 {
+  transform-origin: center;
+  animation: bogoDotPop var(--bogo-cycle) cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+}
+.bd-calli1 { animation-delay: 3.8s; }
+.bd-calli2 { animation-delay: 4.6s; }
+
+/* --- 7. Points de finition --- */
+.bogo-dot.bd1, .bogo-dot.bd2, .bogo-dot.bd3, .bogo-dot.bd4 {
+  transform-origin: center;
+  animation: bogoDotPop var(--bogo-cycle) cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+}
+.bd1 { animation-delay: 5.2s; }
+.bd2 { animation-delay: 5.3s; }
+.bd3 { animation-delay: 5.2s; }
+.bd4 { animation-delay: 5.3s; }
+
+/* =========================================================
+   KEYFRAMES
+   ========================================================= */
+
+@keyframes bogoDraw {
+  0%   { stroke-dashoffset: 545; opacity: 0.6; }
+  2%   { opacity: 1; }
+  18%  { stroke-dashoffset: 0; }
+  88%  { stroke-dashoffset: 0; opacity: 1; }
+  96%  { opacity: 0; }
+  100% { stroke-dashoffset: 545; opacity: 0; }
+}
+
+@keyframes bogoDrawFade {
+  0%   { opacity: 0; stroke-dashoffset: 420; }
+  2%   { opacity: 0.7; }
+  20%  { stroke-dashoffset: 0; }
+  88%  { opacity: 0.7; stroke-dashoffset: 0; }
+  96%  { opacity: 0; }
+  100% { opacity: 0; stroke-dashoffset: 420; }
+}
+
+@keyframes bogoStrike {
+  0%   { opacity: 0; stroke-dashoffset: 100; }
+  2%   { opacity: 1; }
+  12%  { stroke-dashoffset: 0; }
+  88%  { opacity: 1; }
+  96%  { opacity: 0; }
+  100% { opacity: 0; stroke-dashoffset: 100; }
+}
+
+/* Point central : pulsation lente comme un cœur */
+@keyframes bogoPulse {
+  0%, 4%  { opacity: 0; transform: scale(0); }
+  8%      { opacity: 1; transform: scale(1.4); }
+  14%     { transform: scale(1); }
+  80%     { transform: scale(1); opacity: 1; }
+  85%     { transform: scale(1.15); }
+  88%     { transform: scale(1); opacity: 1; }
+  96%     { opacity: 0; transform: scale(0); }
+  100%    { opacity: 0; transform: scale(0); }
+}
+
+@keyframes bogoChevron {
+  0%   { opacity: 0; stroke-dashoffset: 45; }
+  2%   { opacity: 0.9; }
+  14%  { stroke-dashoffset: 0; }
+  88%  { opacity: 0.9; stroke-dashoffset: 0; }
+  96%  { opacity: 0; }
+  100% { opacity: 0; stroke-dashoffset: 45; }
+}
+
+/* Losanges : tamponnés avec rotation + rebond */
+@keyframes bogoStamp {
+  0%   { opacity: 0; transform: scale(0) rotate(45deg); }
+  4%   { opacity: 0; }
+  8%   { opacity: 1; transform: scale(1.25) rotate(3deg); }
+  13%  { transform: scale(0.95) rotate(-1deg); }
+  16%  { transform: scale(1) rotate(0deg); }
+  88%  { opacity: 1; transform: scale(1) rotate(0deg); }
+  96%  { opacity: 0; transform: scale(0) rotate(-30deg); }
+  100% { opacity: 0; transform: scale(0) rotate(45deg); }
+}
+
+@keyframes bogoSlash {
+  0%   { opacity: 0; stroke-dashoffset: 160; }
+  2%   { opacity: 1; }
+  10%  { stroke-dashoffset: 0; }
+  88%  { opacity: 1; stroke-dashoffset: 0; }
+  95%  { opacity: 0; }
+  100% { opacity: 0; stroke-dashoffset: 160; }
+}
+
+/* Calligraphie : geste long et souple */
+@keyframes bogoFlow {
+  0%   { opacity: 0; stroke-dashoffset: 420; }
+  1%   { opacity: 0.8; }
+  22%  { stroke-dashoffset: 0; }
+  88%  { opacity: 0.8; stroke-dashoffset: 0; }
+  96%  { opacity: 0; }
+  100% { opacity: 0; stroke-dashoffset: 420; }
+}
+
+@keyframes bogoDotPop {
+  0%, 3%  { opacity: 0; transform: scale(0); }
+  7%      { opacity: 1; transform: scale(1.5); }
+  11%     { transform: scale(0.9); }
+  14%     { transform: scale(1); }
+  88%     { opacity: 1; transform: scale(1); }
+  96%     { opacity: 0; transform: scale(0); }
+  100%    { opacity: 0; transform: scale(0); }
+}
+
+/* Accessibilité */
+@media (prefers-reduced-motion: reduce) {
+  .bl-circle, .bl-circle-inner, .bl-cross, .bl-chev,
+  .bl-zigzag, .bl-zigzag2, .bogo-calli {
+    opacity: 1;
+    stroke-dashoffset: 0;
+    animation: none;
+  }
+  .bogo-dot, .bogo-shape {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+    animation: none;
+  }
+}
