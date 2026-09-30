@@ -16,20 +16,38 @@
       rel="stylesheet"
     />
     <script>
-  (function () {
-    var stored = localStorage.getItem("theme");
-    if (stored === "light" || stored === "dark") {
-      document.documentElement.dataset.theme = stored;
-    } else if (window.matchMedia("(prefers-color-scheme: light)").matches) {
-      document.documentElement.dataset.theme = "light";
-    } else {
-      document.documentElement.dataset.theme = "dark";
-    }
-  })();
-</script>
+      (function () {
+        var stored = localStorage.getItem("theme");
+        if (stored === "light" || stored === "dark") {
+          document.documentElement.dataset.theme = stored;
+        } else if (window.matchMedia("(prefers-color-scheme: light)").matches) {
+          document.documentElement.dataset.theme = "light";
+        } else {
+          document.documentElement.dataset.theme = "dark";
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    <script>
+      const removeNetlifyBadge = () => {
+        document.querySelectorAll('iframe').forEach(iframe => {
+          if (iframe.src && iframe.src.includes('netlify')) {
+            iframe.style.display = 'none';
+          }
+        });
+        document.querySelectorAll('div').forEach(div => {
+          const style = div.getAttribute('style') || '';
+          if (style.includes('z-index: 2147483645')) {
+            div.style.display = 'none';
+          }
+        });
+      };
+      document.addEventListener('DOMContentLoaded', removeNetlifyBadge);
+      setTimeout(removeNetlifyBadge, 1000);
+      setTimeout(removeNetlifyBadge, 3000);
+    </script>
   </body>
 </html>
