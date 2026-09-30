@@ -27,7 +27,7 @@ import r11 from "./r11.jpg";
 import r12 from "./r12.jpg";
 import r13 from "./r13.jpg";
 import r14 from "./r14.jpg";
-import r15 from "./r15.jpeg";
+import r15 from "./r15b.jpeg";
 import r16 from "./r16.jpeg";
 import r17 from "./r17.png";
 import r18 from "./r18.jpeg";
