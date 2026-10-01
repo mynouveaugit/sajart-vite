@@ -13,6 +13,9 @@ import t2 from "./t2.png";
 import cally from "./cally.webp";
 import e1 from "./e1.jpg";
 import e2 from "./e2.jpg";
+import e3 from "./e3.jpg";
+import e4 from "./e4.jpg";
+import e5 from "./e5.jpg";
 import r1  from "./r1.jpg";
 import r2  from "./r2.jpeg";
 import r3  from "./r3.jpg";
@@ -34,6 +37,8 @@ import r18 from "./r18.jpeg";
 import p1 from "./p1.avif";
 import bureau from "./bureau1.jpeg";
 import i from "./i.avif";
+import r19 from "./r19.jpg";
+import r20 from "./r20.jpg";
 
 export const services = [
   // ── SERVICES ARTISTIQUES ─────────────────────────────────────────────────
@@ -255,28 +260,29 @@ export const services = [
 ];
 
 // ── GALERIE ───────────────────────────────────────────────────────────────────
+// ── GALERIE ───────────────────────────────────────────────────────────────────
 export const gallery = [
-  { label: "Impression textile",       image: r1,  size: ""     },
-  { label: "Équipe sportive",          image: r2,  size: "tall" },
-  { label: "Défilé urbain",            image: r3,  size: "tall" },
-  { label: "Collection textile",       image: r4,  size: ""     },
-  { label: "Décoration Boulangerie",   image: r5,  size: "tall" },
-  { label: "Décoration sur plaque",    image: r6,  size: ""     },
-  { label: "Design publicitaire",      image: r7,  size: "tall" },
-  { label: "Portrait mode",            image: r8,  size: "tall" },
-  { label: "Bogolan tissé",            image: r9,  size: "tall" },
-  { label: "Tableau décoré lumineux",  image: r10, size: "tall" },
-  { label: "Enseigne lumineuse",       image: r11, size: "tall" },
-  { label: "Tableaux décoration",      image: r12, size: ""     },
-  { label: "Exposition portraits",     image: r13, size: "tall" },
-  { label: "Remise de portraits",      image: r14, size: "tall" },
-  // ── nouvelles réalisations ──
-  { label: "T-shirts Chorales Festive",image: r15, size: ""     },
-  { label: "Maillot Mali – SajArt",   image: r16, size: "tall" },
-  { label: "Remise portrait crayon",   image: r17, size: "tall" },
-  { label: "Portrait & client",        image: r18, size: "tall" },
+  { label: "Impression textile",              image: r1,  size: ""     },
+  { label: "Design publicitaire – Chez OXY", image: r2,  size: "tall" },  // était "Équipe sportive"
+  { label: "Défilé urbain",                   image: r3,  size: "tall" },
+  { label: "Collection textile",              image: r4,  size: ""     },
+  { label: "Décoration Boulangerie",          image: r5,  size: "tall" },
+  { label: "Décoration sur plaque",           image: r6,  size: ""     },
+  { label: "Design publicitaire",             image: r7,  size: "tall" },
+  { label: "Portrait mode",                   image: r8,  size: "tall" },
+  { label: "Bogolan tissé",                   image: r9,  size: "tall" },
+  { label: "Tableau décoré lumineux",         image: r10, size: "tall" },
+  { label: "Enseigne lumineuse",              image: r11, size: "tall" },
+  { label: "Tableaux décoration",             image: r12, size: ""     },
+  { label: "Exposition portraits",            image: r13, size: "tall" },
+  { label: "Remise de portraits",             image: r14, size: "tall" },
+  { label: "Tableau – Cœur dans les mains",  image: r15, size: ""     },  // était "T-shirts Chorales Festive"
+  { label: "T-shirts Chorales Festive",       image: r16, size: "tall" },  // était "Maillot Mali – SajArt"
+  { label: "Maillot Mali – SajArt",          image: r17, size: "tall" },  // était "Remise portrait crayon"
+  { label: "Portrait de reconnaissance",      image: r18, size: "tall" },
+  { label: "Exposition Saj Art",               image: r19, size: "tall" },  // était "Réalisation SajArt"
+  { label: "Tickets de concert",               image: r20, size: "tall" },
 ];
-
 // ── ÉQUIPE ────────────────────────────────────────────────────────────────────
 export const teamData = {
   headline: "Une équipe soudée, forgée par la passion",
@@ -287,14 +293,11 @@ export const teamData = {
     { value: "200+", label: "Projets réalisés" },
     { value: "100%", label: "Cœur & âme" },
   ],
-  members: [
-    {
-      image: e1,
-      quote: "L'art n'est pas ce qu'on fait — c'est ce qu'on laisse derrière soi.",
-    },
-    {
-      image: e2,
-      quote: "On met notre âme dans chaque trait, chaque couleur, chaque détail.",
-    },
-  ],
+members: [
+  { image: e1, quote: "L'art n'est pas ce qu'on fait — c'est ce qu'on laisse derrière soi." },
+  { image: e3, quote: "Créer, c'est donner vie à ce que les autres ne voient pas encore." },
+  { image: e4, quote: "Chaque couleur raconte une histoire, chaque trait porte une âme." },
+  { image: e2, quote: "On met notre âme dans chaque trait, chaque couleur, chaque détail." },
+  { image: e5, quote: "La technologie et l'art, deux langages pour une seule vision." },
+],
 };

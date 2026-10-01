@@ -202,7 +202,7 @@ export default function About() {
 
         <div className="founder-text">
           <span className="founder-eyebrow">Le fondateur</span>
-          <h3>Amplilema, dit Jacob Sagara</h3>
+          <h3>Ampilema, dit Jacob Sagara</h3>
           <p>
             Artiste et artisan, il développe un savoir-faire autour de la
             peinture, du bogolan, de la gravure, de la calligraphie et de la

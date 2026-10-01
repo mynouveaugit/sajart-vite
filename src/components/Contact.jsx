@@ -115,7 +115,7 @@ export default function Contact() {
                   <path d="M2 7l10 7 10-7"/>
                 </svg>
               </span>
-              <a href="mailto:mem659611@gmail.com">mem659611@gmail.com</a>
+              <a href="mailto:sajart99@gmail.com">sajart99@gmail.com</a>
             </div>
 
             <div className="social-row">
