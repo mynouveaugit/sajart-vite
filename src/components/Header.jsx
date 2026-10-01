@@ -1,20 +1,26 @@
 import { useEffect, useRef, useState } from "react";
-import Logo from "./Logo.jsx";
+import Logo        from "./Logo.jsx";
 import ThemeToggle from "./ThemeToggle.jsx";
 
+/* ── Liens de navigation ─────────────────────────────────────
+   "Témoignages" pointe vers #temoignages, l'id de la section
+   déclarée dans Testimonials.jsx.
+   ─────────────────────────────────────────────────────────── */
 const links = [
-  { href: "#accueil", label: "Accueil" },
-  { href: "#apropos", label: "À propos" },
-  { href: "#services", label: "Services" },
-  { href: "#galerie", label: "Galerie" },
-  { href: "#contact", label: "Contact" },
+  { href: "#accueil",     label: "Accueil"      },
+  { href: "#apropos",     label: "À propos"     },
+  { href: "#services",    label: "Services"     },
+  { href: "#galerie",     label: "Galerie"      },
+  { href: "#temoignages", label: "Témoignages"  },
+  { href: "#contact",     label: "Contact"      },
 ];
 
 export default function Header() {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen]       = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const headerRef = useRef(null);
+  const headerRef             = useRef(null);
 
+  /* ── Détection scroll ── */
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
@@ -22,11 +28,10 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  /* ── Blocage scroll body quand menu mobile ouvert ── */
   useEffect(() => {
     document.documentElement.style.overflow = open ? "hidden" : "";
-    return () => {
-      document.documentElement.style.overflow = "";
-    };
+    return () => { document.documentElement.style.overflow = ""; };
   }, [open]);
 
   const close = () => setOpen(false);
@@ -37,7 +42,8 @@ export default function Header() {
       className={`site-header ${scrolled ? "is-scrolled" : ""}`}
     >
       <div className="site-header-inner glass">
-        {/* Logo */}
+
+        {/* ── Logo ── */}
         <a
           href="#accueil"
           className="brand-link"
@@ -47,7 +53,7 @@ export default function Header() {
           <Logo />
         </a>
 
-        {/* Navigation desktop */}
+        {/* ── Navigation desktop ── */}
         <nav className="main-nav-desktop" aria-label="Navigation principale">
           {links.map((l, i) => (
             <a
@@ -72,12 +78,10 @@ export default function Header() {
           ))}
         </nav>
 
-        {/* Droite : toggle thème + burger mobile */}
+        {/* ── Droite : toggle thème + burger mobile ── */}
         <div className="header-right">
-          {/* Bouton jour/nuit — visible partout */}
           <ThemeToggle />
 
-          {/* Burger — visible uniquement sur mobile */}
           <button
             className={`nav-toggle nav-toggle-art ${open ? "is-open" : ""}`}
             aria-expanded={open}
@@ -85,7 +89,7 @@ export default function Header() {
             aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
             onClick={() => setOpen((o) => !o)}
           >
-            <span className="toggle-blob" aria-hidden="true"></span>
+            <span className="toggle-blob"  aria-hidden="true"></span>
             <span className="toggle-bar b1"></span>
             <span className="toggle-bar b2"></span>
             <span className="toggle-bar b3"></span>
@@ -93,20 +97,21 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Scrim (fond semi-opaque quand menu mobile ouvert) */}
+      {/* ── Scrim ── */}
       <div
         className={`nav-scrim ${open ? "is-open" : ""}`}
         onClick={close}
         aria-hidden="true"
-      ></div>
+      />
 
-      {/* Menu mobile */}
+      {/* ── Menu mobile ── */}
       <nav
         id="mobile-nav"
         className={`mobile-nav mobile-nav-art ${open ? "is-open" : ""}`}
         aria-label="Menu mobile"
       >
-        <div className="mobile-nav-splash" aria-hidden="true"></div>
+        <div className="mobile-nav-splash" aria-hidden="true" />
+
         <button
           type="button"
           className="mobile-nav-close"
@@ -118,6 +123,7 @@ export default function Header() {
             <line x1="19" y1="5" x2="5" y2="19" />
           </svg>
         </button>
+
         <ul className="mobile-nav-list">
           {links.map((l, i) => (
             <li
@@ -134,6 +140,7 @@ export default function Header() {
             </li>
           ))}
         </ul>
+
         <p className="mobile-nav-tag">SajArt — Atelier créatif</p>
       </nav>
     </header>

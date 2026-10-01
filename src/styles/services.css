@@ -140,3 +140,189 @@
   .service-slide { transition: none; }
   .service-photo-veil { transition: none; }
 }
+
+/* ══════════════════════════════════════════
+   BOUTON « Demander ce service »
+══════════════════════════════════════════ */
+.svc-request-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 1rem;
+  padding: 0.55rem 1.1rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  font-family: var(--font-display);
+  letter-spacing: 0.03em;
+  color: var(--orange-light, #ff9466);
+  background: rgba(240, 106, 53, 0.08);
+  border: 1px solid rgba(240, 106, 53, 0.30);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.22s ease, border-color 0.22s ease,
+              color 0.22s ease, transform 0.22s ease, box-shadow 0.22s ease;
+  width: fit-content;
+}
+.svc-request-btn svg {
+  width: 15px; height: 15px;
+  flex-shrink: 0;
+  transition: transform 0.22s ease;
+}
+.svc-request-btn:hover {
+  background: rgba(240, 106, 53, 0.18);
+  border-color: rgba(240, 106, 53, 0.65);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px -6px rgba(240, 106, 53, 0.45);
+}
+.svc-request-btn:hover svg { transform: rotate(15deg); }
+
+/* ══════════════════════════════════════════
+   MODAL
+══════════════════════════════════════════ */
+.svc-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(5, 12, 20, 0.72);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  animation: backdropIn 0.25s ease;
+}
+@keyframes backdropIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.svc-modal {
+  width: 100%;
+  max-width: 460px;
+  border-radius: 20px;
+  padding: 1.8rem;
+  outline: none;
+  animation: modalUp 0.28s cubic-bezier(0.22, 0.9, 0.32, 1);
+  max-height: 90vh;
+  overflow-y: auto;
+}
+@keyframes modalUp {
+  from { opacity: 0; transform: translateY(24px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* En-tête modal */
+.svc-modal-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.4rem;
+}
+.svc-modal-icon {
+  flex-shrink: 0;
+  width: 48px; height: 48px;
+  background: var(--bg-900, #0f2030);
+  border-radius: 12px;
+  padding: 9px;
+  border: 1px solid var(--glass-border);
+}
+.svc-modal-icon svg { width: 100%; height: 100%; }
+.svc-modal-eyebrow {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-400, #8899aa);
+  margin: 0 0 0.2rem;
+  max-width: none;
+}
+.svc-modal-title {
+  font-size: 1.05rem;
+  color: #f4d9a0;
+  margin: 0;
+}
+.svc-modal-close {
+  margin-left: auto;
+  flex-shrink: 0;
+  width: 34px; height: 34px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--glass-fill);
+  border: 1px solid var(--glass-border);
+  border-radius: 10px;
+  cursor: pointer;
+  color: var(--ink-300, #aabbcc);
+  transition: color 0.2s, border-color 0.2s;
+}
+.svc-modal-close svg { width: 16px; height: 16px; }
+.svc-modal-close:hover { color: var(--orange-light, #ff9466); border-color: var(--orange-light, #ff9466); }
+
+/* Formulaire modal */
+.svc-modal-form .form-group { margin-bottom: 1rem; }
+.svc-modal-form label {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--ink-300, #aabbcc);
+  margin-bottom: 0.35rem;
+}
+.svc-modal-form input,
+.svc-modal-form textarea {
+  width: 100%;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--glass-border);
+  border-radius: 10px;
+  padding: 0.65rem 0.9rem;
+  color: var(--ink-050, #f0f4f8);
+  font-size: 0.9rem;
+  font-family: var(--font-body);
+  transition: border-color 0.2s;
+  resize: vertical;
+}
+.svc-modal-form input:focus,
+.svc-modal-form textarea:focus {
+  outline: none;
+  border-color: var(--orange, #f06a35);
+}
+.svc-modal-submit {
+  width: 100%;
+  justify-content: center;
+  margin-top: 0.4rem;
+}
+
+/* État succès */
+.svc-modal-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem 0 0.5rem;
+  text-align: center;
+}
+.svc-modal-success svg { width: 56px; height: 56px; }
+.svc-modal-success p {
+  color: var(--ink-050, #f0f4f8);
+  font-size: 0.95rem;
+  margin: 0;
+}
+.svc-modal-back { margin-top: 0.5rem; }
+
+
+/* Fix 1 — Le voile ne doit jamais capturer les clics */
+.service-photo-veil {
+  pointer-events: none;   /* ← ajouter cette ligne */
+}
+
+/* Fix 2 — Le body crée son propre contexte d'empilement */
+.service-body {
+  position: relative;     /* ← ajouter cette ligne */
+  z-index: 1;             /* ← et celle-ci */
+  padding: 34px 20px 22px;
+  flex: 1;
+}
+
+/* Fix 3 — Le bouton passe au-dessus de tout */
+.svc-request-btn {
+  position: relative;
+  z-index: 2;
+  /* ... le reste de tes règles inchangées */
+}
